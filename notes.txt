@@ -1,0 +1,24 @@
+Views:-
+All the pages that we need to display to the user will be available in the Resources->View folder.
+
+Routes:-
+Inside the routes folder we have 4 files:-
+    the "APP" file is responsible for the api handling.
+    the "WEB" file is responsible for URL routing.
+
+Inside the "WEB" we need to provide all the new URLs and for handling the app.
+-----------------------------------------------------------------------------------------------
+DB:-
+Create a database in the MySql and then create a user with all permissions.
+
+How to create tables in DB in laravel?
+In the Laravel, we dont need to create any table after creating a DB. We can run Migration scripts which is present in "database->migrations".
+
+Now user can create migration patch and execute it to create table.
+
+"php artisan make:migration create_listings_table" to create a table.
+
+Now the new table would be created. Add the required columns in the newly created file.
+
+Finally, run 'php artisan migrate' to run all migration files.
+-----------------------------------------------------------------------------------------------
