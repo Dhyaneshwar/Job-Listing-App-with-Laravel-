@@ -22,3 +22,21 @@ Now the new table would be created. Add the required columns in the newly create
 
 Finally, run 'php artisan migrate' to run all migration files.
 -----------------------------------------------------------------------------------------------
+
+How to create users using the Seeder and UserFactiory?
+Firstly,  inside the 'database/seeders' open the DatabaseSeeder.php file.
+
+Then uncomment the "factory(10)->create();" line to create 10 different users inside the "users" table
+
+To run the DatabaseSeeder.php run the below command:-
+"php artisan db:seed"
+-----------------------------------------------------------------------------------------------
+
+How to create a Eloquent Model?
+Instead of manually creating the models inside the Model folder, we can run the below command:-
+    "php artisan make:model MODEL_NAME"
+
+By doing this a new model will be created and it will extends the Model class.
+
+So this new model will have a number of inbuilt functions which belongs to Model Class.
+-----------------------------------------------------------------------------------------------
