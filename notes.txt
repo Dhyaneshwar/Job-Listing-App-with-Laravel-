@@ -1,3 +1,7 @@
+Current http path:
+http://localhost:8000/
+-----------------------------------------------------------------------------------------------
+
 Views:-
 All the pages that we need to display to the user will be available in the Resources->View folder.
 
@@ -8,6 +12,7 @@ Inside the routes folder we have 4 files:-
 
 Inside the "WEB" we need to provide all the new URLs and for handling the app.
 -----------------------------------------------------------------------------------------------
+
 DB:-
 Create a database in the MySql and then create a user with all permissions.
 
@@ -32,6 +37,11 @@ To run the DatabaseSeeder.php run the below command:-
 "php artisan db:seed"
 -----------------------------------------------------------------------------------------------
 
+How to delete  the content of deed and then execute the seed at a time?
+To run the DatabaseSeeder.php run the below command:-
+"php artisan migrate:refresh --seed"
+-----------------------------------------------------------------------------------------------
+
 How to create a Eloquent Model?
 Instead of manually creating the models inside the Model folder, we can run the below command:-
     "php artisan make:model MODEL_NAME"
@@ -40,3 +50,7 @@ By doing this a new model will be created and it will extends the Model class.
 
 So this new model will have a number of inbuilt functions which belongs to Model Class.
 -----------------------------------------------------------------------------------------------
+
+How to create a factory?
+Run the below cammand:-
+"php artisan make:factory FACTORY_NAME"
