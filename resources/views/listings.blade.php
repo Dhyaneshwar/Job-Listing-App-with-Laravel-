@@ -1,5 +1,8 @@
+@extends('layout')
+
+@section('contentssss')
+    
 <h1>{{$heading}}</h1>
-<div>
     {{--
         We can do the listing check using the if condition too.
         @if (count($listings) == 0)
@@ -19,4 +22,5 @@
         <p>No Listing Found</p>
 
     @endunless
-</div>
+
+@endsection
