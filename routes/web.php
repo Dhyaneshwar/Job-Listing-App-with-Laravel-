@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ListingController;
 use App\Models\Listing;
 use Faker\Provider\Lorem;
 use Illuminate\Support\Facades\Route;
@@ -16,20 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 // All Listings
-Route::get('/', function () {
-    // Data can be passed as the second parameter of View.
-    return view('listings',  [
-        'heading' => 'Latest Listings',
-        'listings' => Listing::all()
-    ]);
-});
+Route::get('/', [ListingController::class, 'index']);
 
 // Single Listing
-Route::get('/listings/{id}', function ($id) {
-    return view('listing', [
-        'listing' => Listing::find($id)
-    ]);
-});
+Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
 /*
     Route::get('/user/{id}', function($id){
