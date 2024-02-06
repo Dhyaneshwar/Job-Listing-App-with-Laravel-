@@ -54,3 +54,119 @@ So this new model will have a number of inbuilt functions which belongs to Model
 How to create a factory?
 Run the below cammand:-
 "php artisan make:factory FACTORY_NAME"
+-----------------------------------------------------------------------------------------------
+
+What is route model binding?
+It is a self explainatory thing. Here we are binding the route with the model.
+
+Here, this is the current route:-
+Route::get('/listings/{id}', function ($id) {
+    return view('listing', [
+        'listing' => Listing::find($id)
+    ]);
+});
+
+now if the users provides a ID which does not exist in the DB, then it cant be found in the model. So we will get an error.
+
+To overcome this we can return the view only if we have a value for the given ID.
+Route::get('/listings/{id}', function ($id) {
+    $listing = List::find($id);
+    if ($listing) {
+        return view('listing', [
+            'listing' => Listing::find($id)
+        ]);
+    } else {
+        abort('404');
+    }
+});
+
+By doing this we will be able send the view of listing only for valid id. Else it will return 404.
+
+But instead of doing this, we can perform route:model binding:
+Route::get('/listings/{listing}', function (Listing $listing) {
+    return view('listing', [
+        'listing' => $listing
+    ]);
+});
+-----------------------------------------------------------------------------------------------
+
+How to create a component like we do in React?
+
+Before modifcation:
+Main file:-
+@foreach($lists as $list)
+    <div>
+        <p>
+            {{$list->name}}
+        </p>
+    </div>
+@endforeach
+
+After modification:
+Main file:-
+@foreach($lists as $list)
+    <x-Compon1 :list="$list" /> // Note:- before the component name 'x' needs to be given.
+@endforeach
+
+Compon1:-
+@props(['list])
+
+<div>
+    <p>
+        {{$list->name}}
+    </p>
+</div>
+
+Here it is important to note how the props is passed:-
+if we want to pass a string/number we dont need to add the (:) before the propName
+    list="Just String"
+
+if we want to pass a variable, then we need to use the (:)
+    :list="$list"
+-----------------------------------------------------------------------------------------------
+
+What is the replacement of props.children in php?
+
+instead if children (in React),  we need to put {{$slot}}
+
+Before modification:-
+parent.blade.php:-
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
+</div>
+
+After modification:-
+parent.blade.php:-
+<x-child >
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
+</x-child>
+
+child.blade.php:-
+<div class='s1 s2 s3 s4 s5'>
+    {{$slot}}
+</div>
+-----------------------------------------------------------------------------------------------
+
+How can we pass class name to child component from parent?
+
+Let us consider the above example. Now we are using the child component in a different instance.
+Now we have to add s6 and s7 class names in the child component.
+
+diffParent.blade.php:-
+<x-child class='s6 s7'>
+    <p>...</p>
+    <p>...</p>
+    <p>...</p>
+</x-child>
+
+child.blade.php:-
+<div {{$attributes->merge(['class' => 's1 s2 s3 s4 s5'])}} > 
+    {{$slot}}
+</div>
+
+By doing this the classes that are passed from the parent are merged with the child component. 
+-----------------------------------------------------------------------------------------------
+
